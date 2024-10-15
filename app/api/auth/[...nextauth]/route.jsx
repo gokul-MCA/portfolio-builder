@@ -17,14 +17,14 @@ const authOptions = {
       // console.log("User: ", user);
       // console.log("Account: ", account);
 
-      if (account.providers === "google") {
+      if (account.provider === "google") {
         const { name, email } = user;
         try {
           await connectMongoDb();
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("https://localhost:3000/api/user", {
+            const res = await fetch("http://localhost:3000/api/user", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

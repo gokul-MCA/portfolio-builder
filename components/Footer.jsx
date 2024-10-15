@@ -13,7 +13,7 @@ const Footer = () => {
         <a
           className="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-slate-500"
         >
-          <span className="text-sm font-medium"><GetStarted>Let's Get Started </GetStarted></span>
+          <span className="text-sm font-medium"><GetStarted>Let&apos;s Get Started </GetStarted></span>
   
           <svg
             className="size-5 rtl:rotate-180"

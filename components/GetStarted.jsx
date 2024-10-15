@@ -9,7 +9,7 @@ const GetStarted = ({children, className}) => {
     <>
 
     {status === 'authenticated'?(
-     <button className={className} >Explore Portfolio's </button> 
+     <button className={className} >Explore Portfolio&apos;s </button> 
     ):(
       <SignInBtn className={className}>{children}</SignInBtn>  
     )}

@@ -63,29 +63,24 @@ const Navbar = () => {
                   <DropdownMenuContent className="w-auto" align="">
                     <DropdownMenuGroup></DropdownMenuGroup>
                     {/* Switch Account */}
-                    {/* <DropdownMenuItem 
-                      onClick={() => {
-                        //Sign out the user first
-                        signOut({
-                          redirect: false,
-                          callbackUrl: "/auth/signin?session=clear" // Clear session and redirect to sign-in
-                        })
-                        .then(() => {
-                          window.location.href = "https://accounts.google.com/Logout?continue=http://localhost:3000/"; // Ensure to replace 'https://app.example.com' with your app's URL
-                        });
-                      }}
-                    >
-                      Switch Account
-                    </DropdownMenuItem> */}
-                    <DropdownMenuItem
-                      // onClick={() => {
-                      //   signOut({ redirect: false, callbackUrl: "/auth/signin?provider=google" });
-                      // }}
-                    >
-                      <SignOutBtn>
-
-                      Sign Out
-                      </SignOutBtn>
+                    {/* <SignInBtn>
+                      <DropdownMenuItem
+                        onClick={() => {
+                          //Sign out the user first
+                          signOut({
+                            redirect: false,
+                            callbackUrl: "/auth/signin?session=clear", // Clear session and redirect to sign-in
+                          }).then(() => {
+                            window.location.href =
+                              "https://accounts.google.com/Logout?continue"; // Ensure to replace 'https://app.example.com' with your app's URL
+                          });
+                        }}
+                      >
+                        Switch Account
+                      </DropdownMenuItem>
+                    </SignInBtn> */}
+                    <DropdownMenuItem>
+                      <SignOutBtn>Sign Out</SignOutBtn>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
