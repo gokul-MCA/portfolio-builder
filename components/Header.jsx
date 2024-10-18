@@ -19,20 +19,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import GetStarted from "./GetStarted";
 import SignOutBtn from "./SignOutBtn";
 
-const Navbar = () => {
+const Header = () => {
   const { status, data: session } = useSession();
 
   return (
-    <header className="bg-[#2c6e49]">
+    <header className="bg-primary">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <a className="block text-teal-600 dark:text-teal-600" href="/">
+            <a className="" href="/">
               <span className="sr-only">Home</span>
-              <Image src='/favicon.ico' alt="portfolio builder" width={80} height={80} loading="eager" />
+              <div
+                className="bg-dominant rounded"
+                style={{
+                  backgroundImage: "url(/favicon.ico)",
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  width: "60px", // or any width you desire
+                  height: "60px",
+                  loading:"eager",
+                }}
+              />
             </a>
           </div>
 
@@ -40,24 +49,57 @@ const Navbar = () => {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a className="text-[#fefee3] transition hover:text-black" href="#"> About </a>
+                  <a
+                    className="text-black relative inline-block group transition hover:text-secondary"
+                    href="/"
+                  >
+                    Home
+                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
+                  </a>
                 </li>
-    
+
                 <li>
-                  <a className="text-gray-700 transition hover:text-black" href="#"> Services </a>
+                  <a
+                    className="text-black relative inline-block group transition hover:text-secondary"
+                    href="#"
+                  >
+                    About
+                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
+                  </a>
                 </li>
-    
+
                 <li>
-                  <a className="text-gray-700 transition hover:text-black" href="#"> Projects </a>
+                  <a
+                    className="text-black relative inline-block group transition hover:text-secondary"
+                    href="#"
+                  >
+                    Services
+                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
+                  </a>
                 </li>
-    
+
                 <li>
-                  <a className="text-gray-700 transition hover:text-black" href="#"> Blog </a>
+                  <a
+                    className="text-black relative inline-block group transition hover:text-secondary"
+                    href="#"
+                  >
+                    Products
+                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className="text-black relative inline-block group transition hover:text-secondary"
+                    href="#"
+                  >
+                    Blog
+                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
+                  </a>
                 </li>
               </ul>
             </nav>
           </div>
-
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
@@ -98,7 +140,7 @@ const Navbar = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <SignInBtn className="bg-white text-black border rounded hover:border-lime-400 p-2 px-4 hover:bg-black hover:text-white">
+                <SignInBtn className="bg-dominant text-black border rounded p-2 px-4 hover:text-secondary">
                   Sign In
                 </SignInBtn>
               )}
@@ -110,4 +152,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

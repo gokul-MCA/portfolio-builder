@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@400;500;700;900&family=Montserrat:wght@400;700;900&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 :root {
-  --font-sans: 'Libre Baskerville','Roboto', sans-serif; /* For body text */
-  --font-heading: "Libre Baskerville",'Hanken Grotesk','Montserrat', sans-serif; /* For headings */
-  --radius: 8px; /* For border rounded */
+  --bg-color: #121212; /* Dark background */
+  --text-color: #ffffff; /* Light text color */
+  --dominant: #52B788; /* Main color used for sign In */
+  --primary: #D8F3DC; /* Light green background */
+  --secondary: #1B4332; /* Dark green text color */
+  --font-sans: 'Libre Baskerville', 'Roboto', sans-serif; /* For body text */
+  --font-heading: 'Libre Baskerville', 'Hanken Grotesk', 'Montserrat', sans-serif; /* For headings */
+  --radius: 8px; /* For border radius */
 }
 
-/* In your global CSS file */
+/* Global styles */
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: var(--font-sans); /* Set default font for the body */
 }
 
