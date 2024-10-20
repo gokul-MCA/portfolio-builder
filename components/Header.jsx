@@ -2,7 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import SignInBtn from "./SignInBtn";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   DropdownMenu,
@@ -18,137 +18,240 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import Image from "next/image";
 import SignOutBtn from "./SignOutBtn";
+import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Products", href: "/products" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
+];
 const Header = () => {
   const { status, data: session } = useSession();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  // Detect scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="bg-primary">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="md:flex md:items-center md:gap-12">
+    <>
+      <header className="bg-primary">
+        {/* only laptop screens */}
+        <div className="hidden lg:block">
+          <nav
+            aria-label="Global"
+            className={`h-16  font-extrabold  flex items-center justify-around  py-6 px-8 
+              fixed inset-x-0 top-0 backdrop-blur-sm z-50 
+              ${
+                scrolling
+                  ? "bg-transparent border border-b-2"
+                  : "bg-primary bg-opacity-90"
+              }`}
+          >
+            {/* logo */}
             <a className="" href="/">
               <span className="sr-only">Home</span>
               <div
-                className="bg-dominant rounded"
+                className="bg-dominant rounded w-14 h-14"
                 style={{
                   backgroundImage: "url(/favicon.ico)",
                   backgroundSize: "contain",
                   backgroundRepeat: "no-repeat",
-                  width: "60px", // or any width you desire
-                  height: "60px",
-                  loading:"eager",
+                  loading: "lazy",
                 }}
               />
             </a>
-          </div>
-
-          <div className="hidden md:block">
-            <nav aria-label="Global">
-              <ul className="flex items-center gap-6 text-sm">
-                <li>
+            {/* links */}
+            <ul className="flex items-center gap-10">
+              {navigation.map((item) => (
+                <li key={item.href}>
                   <a
-                    className="text-black relative inline-block group transition hover:text-secondary"
-                    href="/"
+                    className={`font-extrabold relative inline-block group transition hover:text-secondary ${
+                      scrolling ? "text-secondary" : "text-black"
+                    }`}
+                    href={item.href}
                   >
-                    Home
+                    {item.name}
                     <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
                   </a>
                 </li>
-
-                <li>
-                  <a
-                    className="text-black relative inline-block group transition hover:text-secondary"
-                    href="#"
-                  >
-                    About
-                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-black relative inline-block group transition hover:text-secondary"
-                    href="#"
-                  >
-                    Services
-                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-black relative inline-block group transition hover:text-secondary"
-                    href="#"
-                  >
-                    Products
-                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-black relative inline-block group transition hover:text-secondary"
-                    href="#"
-                  >
-                    Blog
-                    <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
+              ))}
+            </ul>
+            {/* login */}
+            <div className="flex items-center gap-4">
               {status === "authenticated" ? (
                 <DropdownMenu>
-                  <DropdownMenuTrigger>
+                  <DropdownMenuTrigger aria-label="User menu" className="focus:outline-none">
                     <Image
                       src={session?.user?.image}
-                      alt={session?.user?.name}
+                      alt={session?.user?.name || "User Profile"}
                       loading="eager"
                       width={40}
                       height={40}
-                      className="rounded-full"
+                      className="rounded-full ring-4 ring-dominant"
                     />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-auto" align="">
-                    <DropdownMenuGroup></DropdownMenuGroup>
-                    {/* Switch Account */}
-                    {/* <SignInBtn>
-                      <DropdownMenuItem
-                        onClick={() => {
-                          //Sign out the user first
-                          signOut({
-                            redirect: false,
-                            callbackUrl: "/auth/signin?session=clear", // Clear session and redirect to sign-in
-                          }).then(() => {
-                            window.location.href =
-                              "https://accounts.google.com/Logout?continue"; // Ensure to replace 'https://app.example.com' with your app's URL
-                          });
-                        }}
-                      >
-                        Switch Account
-                      </DropdownMenuItem>
-                    </SignInBtn> */}
-                    <DropdownMenuItem>
+                  <DropdownMenuContent className="bg-primary border-none" align="">
+                    <DropdownMenuItem className={`bg-dominant border-0 hover:text-secondary hover:border hover:border-secondary`}>
                       <SignOutBtn>Sign Out</SignOutBtn>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <SignInBtn className="bg-dominant text-black border rounded p-2 px-4 hover:text-secondary">
-                  Sign In
-                </SignInBtn>
+                <>
+                  <SignInBtn className="bg-dominant text-black border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:bg-primary hover:border-secondary active:bg-white">
+                    Sign In
+                  </SignInBtn>
+                  <button className="bg-white text-black border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:bg-primary hover:border-secondary active:bg-white">
+                    Sign Up
+                  </button>
+                </>
               )}
             </div>
-          </div>
+          </nav>
         </div>
-      </div>
-    </header>
+
+        {/* smaller screens */}
+        <div className="lg:hidden">
+          <nav
+            aria-label="Global"
+            className={`h-14 text-sm flex items-center justify-between 
+              fixed inset-x-0 top-0 p-4 md:p-6 backdrop-blur-sm z-50 
+              ${
+                scrolling
+                  ? "bg-transparent border border-b-2"
+                  : "bg-primary bg-opacity-90"
+              }`}
+          >
+            <div className="w-[30%] flex gap-3 md:gap-5">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2 md:p-2.5 text-black"
+              >
+                <span className="sr-only">Open main menu</span>
+                <HamburgerMenuIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 md:h-6 md:w-6"
+                />
+              </button>
+              {/* logo */}
+              <a className="" href="/">
+                <span className="sr-only">Home</span>
+                <div
+                  className="bg-dominant rounded w-10 h-10 md:w-12 md:h-12"
+                  style={{
+                    backgroundImage: "url(/favicon.ico)",
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    loading: "lazy",
+                  }}
+                />
+              </a>
+            </div>
+            {/* mobile menu and links */}
+            <Sheet
+              open={mobileMenuOpen}
+              //   onClose={setMobileMenuOpen}
+              className="lg:hidden "
+              aria-label="side menu"
+            >
+              <SheetContent
+                className="bg-primary text-black w-full"
+                side="left"
+              >
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1 absolute top-4 right-4 rounded-full hover:text-secondary hover:border-2 hover:border-dominant"
+                >
+                  <span className="sr-only">Close menu</span>
+                  <Cross1Icon
+                    aria-hidden="true"
+                    className="hh-5 w-5 md:h-6 md:w-6"
+                  />
+                </button>
+                <nav aria-label="Global" className="mt-10">
+                  <ul className="text-sm block space-y-6 text-center ">
+                    {navigation.map((item) => (
+                      <li key={item.href}>
+                        <a
+                          className="relative inline-block group transition p-1 px-2 border-2 border-primary rounded-md hover:text-secondary hover:border-dominant"
+                          href={item.href}
+                        >
+                          {item.name}
+                          {/* <span className="absolute left-0 bottom-[-2px] h-[2px] w-full bg-transparent transition-colors duration-300 group-hover:bg-dominant"></span> */}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            {/* login */}
+            <div className="flex items-center gap-4">
+              {status === "authenticated" ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger aria-label="User menu" className="focus:outline-none">
+                    <Image
+                      src={session?.user?.image}
+                      alt={session?.user?.name || "User Profile"}
+                      loading="eager"
+                      width={40}
+                      height={40}
+                      className="rounded-full ring ring-dominant md:ring-4"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-primary border-none outline-none" align="">
+                    <DropdownMenuItem className={`bg-dominant border-0 hover:text-secondary hover:border hover:border-secondary`}>
+                      <SignOutBtn>Sign Out</SignOutBtn>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <>
+                  <SignInBtn className="bg-dominant text-black border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary">
+                    Sign In
+                  </SignInBtn>
+                  <button className="bg-white text-black border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary hidden sm:block">
+                    Sign Up
+                  </button>
+                </>
+              )}
+            </div>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 };
 

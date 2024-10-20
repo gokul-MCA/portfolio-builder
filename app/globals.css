@@ -4,10 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .head1 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold md:font-extrabold lg:font-black text-center;
+  }
+  
+  .head2 {
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold md:font-bold lg:font-extrabold text-center;
+  }
+}
+
+
 
 :root {
-  --bg-color: #121212; /* Dark background */
-  --text-color: #ffffff; /* Light text color */
+  --bg-color: #ffffff ; /* Dark background #121212 */
+  --text-color: #121212; /* Light text color */
   --dominant: #52B788; /* Main color used for sign In */
   --primary: #D8F3DC; /* Light green background */
   --secondary: #1B4332; /* Dark green text color */
@@ -26,6 +37,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading); /* Set heading font */
 }
+
+
 
 
 
