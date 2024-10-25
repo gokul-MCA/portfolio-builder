@@ -37,10 +37,10 @@ const navigation = {
 const Footer = () => {
   return (
     <footer className="bg-primary">
-      <div className="mx-auto max-w-screen-xl  px-4 sm:px-6 lg:px-8  py-10 lg:py-16">
+      <div className="mx-auto max-w-screen-xl  px-4 sm:px-6 lg:px-8  py-10 lg:py-16 ">
         {/* box */}
-        <div className="flex flex-col items-center gap-4 rounded-lg bg-dominant p-6 shadow-lg sm:flex-row sm:justify-between">
-          <strong className="text-black   text-sm md:text-lg lg:text-xl">
+        <div className="flex flex-col items-center gap-4 rounded-lg bg-dominant p-6 sm:flex-row sm:justify-between">
+          <strong className="text-black   text-sm md:text-lg lg:text-xl ">
             Make Your Next Career Move!
           </strong>
           <GetStarted>
@@ -92,20 +92,7 @@ const Footer = () => {
                 }}
               />
             </a>
-            {/* <ul className="flex justify-center gap-6 sm:justify-end">
-            <li>
-              <a
-                href="#"
-                rel="noreferrer"
-                target="_blank"
-                className="text-dominant hover:text-black"
-              >
-                <span className="sr-only">GitHub</span>
-                <GitHubLogoIcon className="h-5 w-5" />
-              </a>
-            </li>
-          </ul> */}
-            <p className="text-black text-center  mt-2 md:mt-3  text-xs lg:text-sm ">
+            <p className="text-black text-center  mt-2 md:mt-3  text-xs ">
               Copyright &copy; 2024. 
               All rights reserved.
             </p>

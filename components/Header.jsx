@@ -120,9 +120,9 @@ const Header = () => {
                       className="rounded-full ring-4 ring-dominant"
                     />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-primary border-none" align="">
-                    <DropdownMenuItem className={`bg-dominant border-0 hover:text-secondary hover:border hover:border-secondary`}>
-                      <SignOutBtn>Sign Out</SignOutBtn>
+                  <DropdownMenuContent className="bg-primary rounded-b-3xl border-none w-[120px]" align="">
+                    <DropdownMenuItem className={`bg-dominant rounded-3xl border-0 hover:text-secondary hover:border hover:border-secondary`}>
+                      <SignOutBtn className="p-1 text-center w-full">Sign Out</SignOutBtn>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -161,7 +161,7 @@ const Header = () => {
                 <span className="sr-only">Open main menu</span>
                 <HamburgerMenuIcon
                   aria-hidden="true"
-                  className="h-5 w-5 md:h-6 md:w-6"
+                  className="h-5 w-5 md:h-6 md:w-6 hover:text-secondary"
                 />
               </button>
               {/* logo */}
@@ -192,12 +192,12 @@ const Header = () => {
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 absolute top-4 right-4 rounded-full hover:text-secondary hover:border-2 hover:border-dominant"
+                  className="p-1 absolute top-4 right-4 rounded-full border border-black hover:text-secondary hover:border-2 hover:border-dominant"
                 >
                   <span className="sr-only">Close menu</span>
                   <Cross1Icon
                     aria-hidden="true"
-                    className="hh-5 w-5 md:h-6 md:w-6"
+                    className="h-5 w-5 md:h-6 md:w-6"
                   />
                 </button>
                 <nav aria-label="Global" className="mt-10">
@@ -231,9 +231,9 @@ const Header = () => {
                       className="rounded-full ring ring-dominant md:ring-4"
                     />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-primary border-none outline-none" align="">
-                    <DropdownMenuItem className={`bg-dominant border-0 hover:text-secondary hover:border hover:border-secondary`}>
-                      <SignOutBtn>Sign Out</SignOutBtn>
+                  <DropdownMenuContent className="bg-primary rounded-b-3xl border-none outline-none w-[100px] md:w-[120px]" align="">
+                    <DropdownMenuItem className={`bg-dominant rounded-3xl border-0 hover:text-secondary hover:border hover:border-secondary`}>
+                      <SignOutBtn className={`p-0.5 w-full text-center text-xs md:text-sm`}>Sign Out</SignOutBtn>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
