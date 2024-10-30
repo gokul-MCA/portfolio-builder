@@ -45,7 +45,7 @@ const Footer = () => {
           </strong>
           <GetStarted>
             <a
-              className="inline-flex items-center gap-2 rounded-full cursor-pointer 
+              className="inline-flex items-center gap-2 rounded-full cursor-pointer transition
               border-2  font-medium md:font-semibold  text-xs md:text-sm   px-6 lg:px-8  py-2 lg:py-3
               border-dominant         bg-white           text-black
               hover:border-secondary    hover:bg-primary     hover:text-secondary

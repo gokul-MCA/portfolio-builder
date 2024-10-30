@@ -70,7 +70,7 @@ const Header = () => {
           <nav
             aria-label="Global"
             className={`h-16  font-extrabold  flex items-center justify-around  py-6 px-8 
-              fixed inset-x-0 top-0 backdrop-blur-sm z-50 
+              fixed inset-x-0 top-0 backdrop-blur-xl z-50 
               ${
                 scrolling
                   ? "bg-transparent border border-b-2"
@@ -128,10 +128,10 @@ const Header = () => {
                 </DropdownMenu>
               ) : (
                 <>
-                  <SignInBtn className="bg-dominant text-black border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:bg-primary hover:border-secondary active:bg-white">
+                  <SignInBtn className="bg-dominant text-black transition border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:border-secondary active:bg-white">
                     Sign In
                   </SignInBtn>
-                  <button className="bg-white text-black border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:bg-primary hover:border-secondary active:bg-white">
+                  <button className="bg-white text-black transition border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:border-secondary active:bg-white">
                     Sign Up
                   </button>
                 </>
@@ -239,10 +239,10 @@ const Header = () => {
                 </DropdownMenu>
               ) : (
                 <>
-                  <SignInBtn className="bg-dominant text-black border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary">
+                  <SignInBtn className="bg-dominant text-black transition border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary">
                     Sign In
                   </SignInBtn>
-                  <button className="bg-white text-black border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary hidden sm:block">
+                  <button className="bg-white text-black transition border-2 border-dominant rounded p-1.5 px-1.5 md:p-2 md:px-2 hover:text-secondary hover:border-secondary hidden sm:block">
                     Sign Up
                   </button>
                 </>

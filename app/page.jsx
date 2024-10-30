@@ -10,7 +10,7 @@ export default function Home() {
         <h1 className="head1 m-3 mt-4 lg:mt-10">
           Showcase Your Talent with Tailored Elegance
         </h1>
-        <h2 className="head2 m-2 mt-3 md:mt-4 lg:mt-8">UI & UX</h2>
+        <h2 className="head2 m-2 mt-3 md:mt-4 lg:mt-8">Unleash your creativity</h2>
 
         <div className="w-full max-w-4xl text-center px-4 py-4 md:py-10 md:px-20">
           {/* 1 */}
@@ -35,7 +35,7 @@ export default function Home() {
         <GetStarted>
           <a
             className="inline-flex items-center gap-2 rounded-full 
-            drop-shadow-xl cursor-pointer border-2 relative
+            drop-shadow-xl cursor-pointer border-2 relative transition
             font-medium md:font-semibold  text-xs md:text-sm   px-6 lg:px-8  py-2 lg:py-3
             border-dominant        bg-white         text-black
             hover:border-secondary   hover:bg-primary   hover:text-secondary
@@ -48,7 +48,7 @@ export default function Home() {
         <span className="pt-10">
           <ArrowDownIcon
             className="animate-bounce cursor-pointer rounded-full p-1 border-2 
-            h-7 w-7 md:h-8 md:w-8
+            h-7 w-7 md:h-8 md:w-8 transition
           bg-white           border-dominant         text-black
           hover:bg-primary   hover:border-secondary    hover:text-secondary "
           />
