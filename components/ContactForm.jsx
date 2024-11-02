@@ -160,9 +160,9 @@ const ContactForm = () => {
             >
               {submit? (<>Sending...</>):(<>Talk to Company name</>)}
             </button>
+          </form>
 
             {/* status after send succesfully email */}
-          </form>
             <Status
             message={status.message}
             type={status.type}
