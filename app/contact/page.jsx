@@ -9,7 +9,7 @@ export const metadata = {
     url: "https://portfolio-builder-nextjs.netlify.app/contact",
     images: [
       {
-        url: "/contact.jpg",
+        url: "https://portfolio-builder-nextjs.netlify.app/contact.jpg",
         width: 800,
         height: 600,
         alt: "Contact Us",
