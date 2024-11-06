@@ -1,18 +1,18 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  const { name, email, message } = await req.json();
+  const { userName, userEmail, userTextarea } = await req.json();
 
   const htmlContent = `
   <div style="font-family: Arial, sans-serif; color: black;">
     <div style="background-color: #D8F3DC; padding: 20px; text-align: center;">
-      <h2 style="color: #1B4332;">New Message from ${name}</h2>
+      <h2 style="color: #1B4332;">New Message from ${userName}</h2>
     </div>
     <div style="padding: 20px;">
       <p style="font-size: 16px;">Hello,</p>
-      <p style="font-size: 16px;">You have received a new message from <strong>${name}</strong> (${email}):</p>
+      <p style="font-size: 16px;">You have received a new message from <strong>${userName}</strong> (${userEmail}):</p>
       <blockquote style="background-color: #f9f9f9; padding: 10px 20px; border-left: 4px solid #52B788;">
-        <p style="font-size: 14px;">${message}</p>
+        <p style="font-size: 14px;">${userTextarea}</p>
       </blockquote>
       <p style="font-size: 14px; color: black">Thank you,<br>Your Application Team</p>
     </div>
@@ -34,12 +34,12 @@ export async function POST(req) {
 
   try {
     await transporter.sendMail({
-      from: email,
-      to: 'gokulpnr2001@gmail.com', // Replace with your email
-      subject: `New message from ${name}`,
+      from: userEmail,
+      to: 'gokulpnr2001@gmail.com', // Replace with your userEmail
+      subject: `New message from ${userName}`,
     //   text: message,
       html:htmlContent,
-      replyTo: email,
+      replyTo: userEmail,
     });
 
     return new Response(JSON.stringify({ message: 'Email sent successfully' }), { status: 200 });
