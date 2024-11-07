@@ -2,7 +2,6 @@ import GetStarted from "@/components/GetStarted";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import PageLayout from "./page-layout";
 
-console.log("gokul");
 export default function Home() {
   return (
     <PageLayout>

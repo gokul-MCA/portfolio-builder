@@ -1,12 +1,11 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function SignUp() {
+export default function SignIn() {
   const {
     register,
     handleSubmit,
@@ -21,7 +20,7 @@ export default function SignUp() {
   return (
     <section className="mt-16">
       <div className="flex flex-col items-center justify-center px-12 py-6 lg:py-3">
-        <h1 className="head2 mb-4">Sign up</h1>
+        <h1 className="head2 mb-4">Sign in</h1>
         <div
           className="min-w-72 w-full max-w-lg p-6 rounded-lg 
           border-2 border-dominant hover:border-secondary  
@@ -32,7 +31,7 @@ export default function SignUp() {
           <button
             className="px-4 py-2 flex items-center gap-2 rounded-lg m-auto bg-white border-2
         border-black hover:border-dominant hover:shadow transition duration-150 active:bg-dominant"
-          onClick={(e)=> signIn('google')}>
+          >
             <Image
               className="w-7  h-7"
               src="/google-icon.svg"
@@ -56,66 +55,6 @@ export default function SignUp() {
             onSubmit={handleSubmit(onSubmit)}
             className="grid gap-4 md:gap-6 mt-2 md:mt-5"
           >
-            {/* first name */}
-            <div className="flex flex-col col-span-2 md:col-span-1 gap-2">
-              <label
-                htmlFor="firstname"
-                className="text-sm font-semibold md:text-base lg:font-extrabold pointer-events-none"
-              >
-                First name
-              </label>
-              <input
-                {...register("firstname", {
-                  required: "First name is required",
-                  pattern: {
-                    value: /^[a-zA-Z]{2,}$/,
-                    message: "First name is not valid",
-                  },
-                })}
-                id="firstname"
-                autoFocus
-                className="bg-white text-black text-sm outline-none h-8 
-              rounded-lg indent-2 caret-dominant p-1 
-              border-2 active:border-dominant hover:border-dominant lg:h-10"
-                aria-label="enter your firstname"
-              />
-              {errors.firstname && (
-                <span className="text-red-500 text-xs">
-                  {errors.firstname.message}
-                </span>
-              )}
-            </div>
-            {/* end of first name */}
-
-            {/* last name */}
-            <div className="flex flex-col col-span-2 md:col-span-1 gap-2">
-              <label
-                htmlFor="lastname"
-                className="text-sm font-semibold md:text-base lg:font-extrabold pointer-events-none"
-              >
-                Last name
-              </label>
-              <input
-                {...register("lastname", {
-                  required: "Last name is required",
-                  pattern: {
-                    value: /^[a-zA-Z]{1,}$/,
-                    message: "Last name is not valid",
-                  },
-                })}
-                id="lastname"
-                className="bg-white text-black text-sm outline-none h-8 
-              rounded-lg indent-2 caret-dominant p-1 
-              border-2 active:border-dominant hover:border-dominant lg:h-10"
-                aria-label="enter your lastname"
-              />
-              {errors.lastname && (
-                <span className="text-red-500 text-xs">
-                  {errors.lastname.message}
-                </span>
-              )}
-            </div>
-            {/* end of last name */}
 
             {/* email */}
             <div className="flex flex-col col-span-2 gap-2">
@@ -147,7 +86,7 @@ export default function SignUp() {
             {/* end of email */}
 
             {/* password enter */}
-            <div className="flex flex-col col-span-2 md:col-span-1 gap-2">
+            <div className="flex flex-col col-span-2 gap-2">
               <label
                 htmlFor="password"
                 className="text-sm font-semibold md:text-base lg:font-extrabold pointer-events-none"
@@ -177,35 +116,6 @@ export default function SignUp() {
             </div>
             {/* end of enter password */}
 
-            {/* Confirm password */}
-            <div className="flex flex-col col-span-2 md:col-span-1 gap-2">
-              <label
-                htmlFor="confirmPassword"
-                className="text-sm font-semibold md:text-base lg:font-extrabold pointer-events-none"
-              >
-                Confirm password
-              </label>
-              <input
-                {...register("confirmPassword", {
-                  required: "Re-enter password is required",
-                  validate: (value) => {
-                    const { password } = getValues();
-                    return password === value || "Passwords do not match";
-                  },
-                })}
-                id="confirmPassword"
-                className="bg-white text-black text-sm outline-none h-8 
-              rounded-lg indent-2 caret-dominant p-1 
-              border-2 active:border-dominant hover:border-dominant lg:h-10"
-              />
-              {errors.confirmPassword && (
-                <span className="text-red-500 text-xs">
-                  {errors.confirmPassword.message}
-                </span>
-              )}
-            </div>
-            {/* end of password confirm */}
-
             {/* Submit Button */}
             <div className="flex flex-col col-span-2 gap-2">
               <button
@@ -216,16 +126,16 @@ export default function SignUp() {
             active:transform active:scale-95 active:transition-all lg:text-base"
                 aria-label="Submit your message to Portfolio Builder"
               >
-                Create an account
+                Sign in to account
               </button>
             </div>
             {/* end of button */}
           </form>
 
           <p className="mt-10 text-center text-sm">
-            Already on Portfolio Builder?{" "}
-            <Link href="/signin" className="text-base font-semibold">
-              Sign in
+            New to Portfolio Builder?{" "}
+            <Link href="/signup" className="text-base font-semibold">
+              Sign up
             </Link>
           </p>
         </div>

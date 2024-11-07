@@ -31,6 +31,7 @@ import {
 import Image from "next/image";
 import SignOutBtn from "./SignOutBtn";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -128,12 +129,16 @@ const Header = () => {
                 </DropdownMenu>
               ) : (
                 <>
-                  <SignInBtn className="bg-dominant text-black transition border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:border-secondary active:bg-white">
+                <Link href={'/signin'}>
+                  <button className="bg-dominant text-black transition border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:border-secondary active:bg-white">
                     Sign In
-                  </SignInBtn>
+                  </button>
+                </Link>
+                  <Link href={'/signup'}>
                   <button className="bg-white text-black transition border-2 border-dominant rounded p-2 px-4 hover:text-secondary hover:border-secondary active:bg-white">
                     Sign Up
                   </button>
+                  </Link>
                 </>
               )}
             </div>
